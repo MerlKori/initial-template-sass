@@ -1,0 +1,127 @@
+$columns: 12
+
+// брейкпоинты
+$break_max: 1920px
+$break_lg: 1170px
+$break_md: 992px
+$break_sm: 720px
+$break_xs: 576px
+$break_min: 320px
+
+// отступы
+$padding: 15px
+
+=offset-left($n)
+      $val: 100% / $columns * $n
+      margin-left: $val
+
+=offset-right($n)
+      $val: 100% / $columns * $n
+      margin-right: $val
+
+// контейнер
+$wrap-width: 1170px
+
+=wrapper-padding()
+    padding-left: $padding
+    padding-right: $padding
+
+=wrapper-custom($wrap-size:$wrap-width, $margin-vertical:0)
+    width: 100%
+    max-width: $wrap-size
+    margin: $margin-vertical auto
+
+// строка
+
+=row-flex()
+    display: flex
+    flex-wrap: wrap
+
+=row-negative()
+    margin-right: -$padding
+    margin-left: -$padding
+
+=row-flex-center()
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+
+// столбец
+
+$margin: 30px
+$margin-lg: 30px
+$margin-md: 30px
+$margin-sm: 30px
+$margin-xs:  30px
+
+
+=size($n , $offset : $margin )
+    $val: 100% / $columns * $n
+    width: #{calc(#{$val} - #{$offset})}
+    margin-left: ($offset/2)
+    margin-right: ($offset/2)
+
+=size-lg($n , $offset-lg : $margin-lg)
+    $val: 100% / $columns * $n
+    @media screen and (max-width: $break_lg)
+        width: #{calc(#{$val} - #{$offset-lg})}
+        margin-left: ($offset-lg/2)
+        margin-right: ($offset-lg/2)
+
+=size-md($n , $offset-md : $margin-md)
+    $val: 100% / $columns * $n
+    @media screen and (max-width: $break_md)
+        width: #{calc(#{$val} - #{$offset-md})}
+        margin-left: ($offset-md/2)
+        margin-right: ($offset-md/2)
+
+=size-sm($n, $offset-sm : $margin-sm)
+    $val: 100% / $columns * $n        
+    @media screen and (max-width: $break_sm)
+         width: #{calc(#{$val} - #{$offset-sm})}
+         margin-left: ($offset-sm/2)
+         margin-right: ($offset-sm/2)
+
+=size-xs($n , $offset-xs : $margin-xs)
+    $val: 100% / $columns * $n
+    @media screen and (max-width: $break_xs)
+        width: #{calc(#{$val} - #{$offset-xs})}
+        margin-left: ($offset-xs/2)
+        margin-right: ($offset-xs/2)
+
+// медиазапросы
+=max-block()
+    @media screen and (max-width: $break_max)
+        @content
+
+=lg-block()
+    @media screen and (max-width: $break_lg)
+        @content
+
+=md-block()
+    @media screen and (max-width: $break_md)
+        @content
+
+=sm-block()
+    @media screen and (max-width: $break_sm)
+        @content
+
+=xs-block()
+    @media screen and (max-width: $break_xs)
+        @content
+
+=min-block()
+    @media screen and (max-width: $break_min)
+        @content
+
+=from($min_width)
+    @media screen and (min-width: $min_width)
+        @content
+
+=to($max_width)
+    @media screen and (max-width: $max_width)
+        @content
+
+=from-to($min_width, $max_width)
+    @media screen and (min-width: $min_width) and (max-width: $max_width)
+        @content
